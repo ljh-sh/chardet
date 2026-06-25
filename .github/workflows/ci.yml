@@ -41,10 +41,13 @@ jobs:
       - name: Smoke test CLI
         run: |
           ./target/release/chardet --version
-          # ASCII file -> utf-8
+          # ASCII file -> utf-8, confidence 1 (certain)
           printf 'hello ascii\n' > /tmp/smoke.txt
           out="$(./target/release/chardet /tmp/smoke.txt)"
           echo "$out"
-          echo "$out" | grep -q '^utf-8	/tmp/smoke.txt$'
-          # stdin
-          printf '\xef\xbb\xbfbom utf8' | ./target/release/chardet | grep -q '^utf-8	-$'
+          echo "$out" | grep -q '^utf-8	1	/tmp/smoke.txt$'
+          # stdin content -> path `-`
+          printf '\xef\xbb\xbfbom utf8' | ./target/release/chardet | grep -q '^utf-8	1	-$'
+          # --files-from reads a path list (newline- and NUL-separated)
+          printf '/tmp/smoke.txt\n' | ./target/release/chardet --files-from - | grep -q '^utf-8	1	/tmp/smoke.txt$'
+          printf '/tmp/smoke.txt\0' | ./target/release/chardet --files-from - -0 | grep -q '^utf-8	1	/tmp/smoke.txt$'
