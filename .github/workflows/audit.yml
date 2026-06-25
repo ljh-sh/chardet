@@ -34,7 +34,7 @@ jobs:
           toolchain: stable
 
       - name: Install cargo-deny
-        uses: taiki-e/install-action@5ab30f5ec74fba4e4d8d4581341c6b7bf17f9942 # v2
+        uses: taiki-e/install-action@682e7d9e49c5e653d371fc6adbda67653461378a # v2.82.4
         with:
           tool: cargo-deny
 
