@@ -1,0 +1,36 @@
+[package]
+name = "chardet"
+version = "0.1.0"
+authors = ["ljh-sh <lijunhao@x-cmd.com>"]
+edition = "2021"
+rust-version = "1.74"
+description = "Detect text file encoding via chardetng (BOM-aware, single-binary Rust CLI)"
+readme = "README.md"
+homepage = "https://github.com/ljh-sh/chardet"
+documentation = "https://github.com/ljh-sh/chardet"
+license = "Apache-2.0"
+repository = "https://github.com/ljh-sh/chardet"
+keywords = ["encoding", "charset", "detect", "chardetng", "cli"]
+categories = ["command-line-utilities", "text-processing"]
+exclude = [
+    ".release-artifacts/",
+    ".github/",
+    "target/",
+    "*.swp",
+    "*.swo",
+    "*~",
+    ".DS_Store",
+]
+
+[[bin]]
+name = "chardet"
+path = "src/main.rs"
+
+[dependencies]
+chardetng = "1.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
