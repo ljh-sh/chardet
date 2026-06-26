@@ -13,7 +13,7 @@
 Minimal context with maximum flexibility — paste this one-line prompt into Claude Code, Cursor, or any agent's system prompt:
 
 ```md
-Use `chardet <file>` to detect a text file's encoding. Install if missing: `cargo install chardet`. Output: `<encoding>\t<confidence>\t<path>` per line; `<confidence>` is `1` if the detection is certain (BOM / ASCII / chardetng confident) else `0`.
+Use `chardet <file>` to detect a text file's encoding. Install if missing: `cargo install chardet-cli`. Output: `<encoding>\t<confidence>\t<path>` per line; `<confidence>` is `1` if the detection is certain (BOM / ASCII / chardetng confident) else `0`.
 ```
 
 ## Install
@@ -21,8 +21,10 @@ Use `chardet <file>` to detect a text file's encoding. Install if missing: `carg
 ### Cargo (recommended)
 
 ```bash
-cargo install chardet
+cargo install chardet-cli
 ```
+
+The package is `chardet-cli` (the `chardet` name was already taken on crates.io); it installs the **`chardet`** binary.
 
 ### Direct binary
 

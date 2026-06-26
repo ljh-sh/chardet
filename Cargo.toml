@@ -1,5 +1,5 @@
 [package]
-name = "chardet"
+name = "chardet-cli"
 version = "0.2.0"
 authors = ["ljh-sh <lijunhao@x-cmd.com>"]
 edition = "2021"
