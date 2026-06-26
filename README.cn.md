@@ -13,7 +13,7 @@
 把下面一行塞进 Claude Code / Cursor 等任何 agent 的 system prompt 即可：
 
 ```md
-用 `chardet <file>` 检测文本文件编码。缺失则安装：`cargo install chardet`。输出格式：每行 `<encoding>\t<confidence>\t<path>`；`<confidence>` 为 `1` 表示确定（BOM / ASCII / chardetng 确信），否则 `0`。
+用 `chardet <file>` 检测文本文件编码。缺失则安装：`cargo install chardet-cli`。输出格式：每行 `<encoding>\t<confidence>\t<path>`；`<confidence>` 为 `1` 表示确定（BOM / ASCII / chardetng 确信），否则 `0`。
 ```
 
 ## 安装
@@ -21,8 +21,10 @@
 ### Cargo（推荐）
 
 ```bash
-cargo install chardet
+cargo install chardet-cli
 ```
+
+包名是 `chardet-cli`（crates.io 上 `chardet` 已被占用），安装后的二进制名仍是 **`chardet`**。
 
 ### 直接下载二进制
 
