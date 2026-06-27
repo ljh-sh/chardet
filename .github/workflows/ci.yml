@@ -60,13 +60,15 @@ jobs:
         shell: bash
         run: |
           cargo run --release --quiet -- --version
-          # ASCII file -> utf-8, confidence 1 (certain)
-          printf 'hello ascii\n' > /tmp/smoke.txt
-          out="$(cargo run --release --quiet -- /tmp/smoke.txt)"
+          # ASCII file -> utf-8, confidence 1 (certain). Use a relative path
+          # (not /tmp) so the native Windows binary resolves it like bash does.
+          printf 'hello ascii\n' > smoke.txt
+          out="$(cargo run --release --quiet -- smoke.txt)"
           echo "$out"
-          echo "$out" | grep -q '^utf-8	1	/tmp/smoke.txt$'
+          echo "$out" | grep -q '^utf-8	1	smoke.txt$'
           # stdin content -> path `-`
           printf '\xef\xbb\xbfbom utf8' | cargo run --release --quiet -- | grep -q '^utf-8	1	-$'
           # --files-from reads a path list (newline- and NUL-separated)
-          printf '/tmp/smoke.txt\n' | cargo run --release --quiet -- --files-from - | grep -q '^utf-8	1	/tmp/smoke.txt$'
-          printf '/tmp/smoke.txt\0' | cargo run --release --quiet -- --files-from - -0 | grep -q '^utf-8	1	/tmp/smoke.txt$'
+          printf 'smoke.txt\n' | cargo run --release --quiet -- --files-from - | grep -q '^utf-8	1	smoke.txt$'
+          printf 'smoke.txt\0' | cargo run --release --quiet -- --files-from - -0 | grep -q '^utf-8	1	smoke.txt$'
+          rm -f smoke.txt
