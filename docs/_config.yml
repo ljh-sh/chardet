@@ -1,0 +1,12 @@
+title: chardet
+description: 检测文本文件编码 (基于 chardetng, 支持 BOM, 单二进制 CLI)
+repo: chardet
+baseurl: ""
+url: "https://chardet.ljh.sh"
+theme: ~
+
+permalink: pretty
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
